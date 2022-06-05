@@ -1,0 +1,257 @@
+/*  NORMALICE   */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background: linear-gradient(180deg, #7A0000 0%, #980202 100%, #980202 100%);
+    padding: 0px 10px 10px 10px;
+}
+/*  PUNTUACION  */
+
+.Header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0);
+    width: 100%;
+    height: 8vh;
+}
+
+.Header__Marcador{
+    background: #E4E4E4;
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0.5rem 4rem;
+    border-radius: 0rem 0rem 1.5rem 1.5rem;
+}
+.Header__Marcador__Puntos{
+    display: inline-block;
+}
+
+
+
+/*  OUTPUT  */
+
+.Output{
+    min-height: 66.75vh;
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-direction: row;
+    max-width: 1490px;
+    
+    
+}
+
+
+/*  Output AHORCADO */
+
+.Output__Dibujo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 38rem;
+    height: 28rem;
+    background: #E4E4E4;
+    margin: 2rem;
+}
+
+
+
+/*  Output Texto    */
+
+.Output__Texto{
+    width: 54%;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+
+/*  Output Palabra  */
+
+.Output__Texto__Palabra{
+    display: flex;
+    flex-direction: row;
+    margin: 3rem 0rem;
+
+}
+
+.Output__Texto__Palabra__Caracter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 5rem;
+
+}
+
+.Output__Texto__Palabra__Caracter__Letra{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.796);
+    width: 5rem;
+    height: 5rem;
+    font-size: 3em;
+}
+
+.Output__Texto__Palabra__Caracter__Linea{
+    display: inline-block;
+    background-color: black;
+    width: 3rem;
+    height: 0.2rem;
+
+}
+
+.Output__Texto__Avisos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E4E4E4;
+    text-align: center;
+    font-size: 1em;
+    width: 80%;
+    align-self: center;
+    height: 6rem;
+    margin: 2rem;
+    line-height: 3rem;
+
+}
+
+
+
+
+/*  Input   */
+
+.Input{
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: center;
+    min-height: 22.25vh;
+    max-width: 1490px;
+}
+
+.Input__Letras{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 0rem 2rem;
+    gap: 1rem;
+    justify-content: center;
+    width: 80rem;
+}
+
+.Input__Letras__Letra{
+    display: flex;
+    width: 5rem;
+    height: 5rem;
+    background-color: black;
+    color: white;
+    font-size: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.Input__Letras__Letra:hover{
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.80);
+    cursor: pointer;
+}
+
+
+
+
+/*  EVENTOS */
+
+.Disable{
+    display: none;
+}
+
+.Mid-Disable{
+    opacity: 50%;
+}
+
+
+
+/*  STICKMAN    */
+
+.Dib-Inicio{
+    opacity: 0%;
+}
+
+#SVG-Stickman{
+    height: 90%;
+    width: 90%;
+}
+
+.Vida1{
+    opacity: 100%;
+}
+.Vida2{
+    opacity: 100%;
+}
+
+.Vida3{
+    opacity: 100%;
+}
+
+.Vida4{
+    opacity: 100%;
+}
+.Vida5{
+    opacity: 100%;
+}
+.Vida6{
+    opacity: 100%;
+}
+.Vida7{
+    opacity: 100%;
+}
+.Vida8{
+    opacity: 100%;
+}
+
+
+
+
+
+/*  Responsive  */
+
+@media screen and (max-width:1400px) {
+    .Output{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .Output__Texto{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:740px) {
+    .Output__Texto__Palabra__Caracter{
+        width: 3rem;
+        gap: 0.5rem;
+    }
+    
+    .Output__Texto__Palabra__Caracter__Letra{
+        width: 3rem;
+        height: 3rem;
+        font-size: 2em;
+    }
+    
+    .Output__Texto__Palabra__Caracter__Linea{
+        width: 1.5rem;
+        height: 0.2rem;
+    
+    }
+}
