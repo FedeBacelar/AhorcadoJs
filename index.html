@@ -7,80 +7,77 @@
     <link rel="stylesheet" type="text/css" href="CSS\Index.css">
     <title>AHORCADO</title>
 </head>
-<body>
+<body class="Grid">
+
     <header class="Header">
         <div class="Header__Marcador"><h1 class="Header__Marcador__Puntos">000</h1></div>
     </header>
-    <section class="Output">
-        <article class="Output__Dibujo">
+
+    <section class="Output--Dibujo">
+        <article>
             <svg id="SVG-Stickman"width="251" height="303" viewBox="0 0 251 303" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle class="Vida4 Dib-Inicio"cx="225" cy="77" r="24.5" stroke="black"/>
-                <line class="Vida2 Dib-Inicio" x1="225.5" y1="102" x2="225.5" y2="202" stroke="black"/>
-                <line class="Vida3 Dib-Inicio" x1="225.354" y1="127.354" x2="200.354" y2="152.354" stroke="black"/>
-                <line class="Vida1 Dib-Inicio" x1="225.354" y1="201.354" x2="200.354" y2="226.354" stroke="black"/>
-                <line class="Vida1 Dib-Inicio" x1="250.646" y1="152.354" x2="225.646" y2="127.354" stroke="black"/>
-                <line class="Vida3 Dib-Inicio" x1="250.646" y1="226.354" x2="225.646" y2="201.354" stroke="black"/>
-                <line class="Vida6 Dib-Inicio" x1="25.5" y1="2" x2="25.5" y2="272" stroke="black"/>
-                <line class="Vida5 Dib-Inicio" y1="-0.5" x2="39.2374" y2="-0.5" transform="matrix(-0.637147 0.770742 -0.637147 -0.770742 25 271.758)" stroke="black"/>
-                <line class="Vida5 Dib-Inicio" y1="-0.5" x2="39.2374" y2="-0.5" transform="matrix(-0.637147 -0.770742 0.637147 -0.770742 51 302)" stroke="black"/>
-                <line class="Vida8 Dib-Inicio" x1="215.177" y1="68.1768" x2="211.177" y2="72.1768" stroke="black" stroke-width="0.5"/>
-                <line class="Vida8 Dib-Inicio" x1="214.823" y1="72.1768" x2="210.823" y2="68.1768" stroke="black" stroke-width="0.5"/>
-                <line class="Vida8 Dib-Inicio" x1="239.177" y1="68.1768" x2="235.177" y2="72.1768" stroke="black" stroke-width="0.5"/>
-                <line class="Vida8 Dib-Inicio" x1="238.823" y1="72.1768" x2="234.823" y2="68.1768" stroke="black" stroke-width="0.5"/>
-                <path class="Vida8 Dib-Inicio" d="M211 83.5H214.5L217.5 85.5L221.5 83.5L225 85.5L228.5 83.5L232 85.5L235.5 83.5H239" stroke="black"/>
-                <line class="Vida7 Dib-Inicio" x1="25" y1="1.5" x2="225" y2="1.5" stroke="black"/>
-                <path class="Vida8 Dib-Inicio" d="M225.5 1L224.5 13.5L226.5 26.5L224.5 39.5L225.5 52" stroke="#663B1D"/>
-                </svg>
-                
-                
-                
-        </article>
+            <circle class="Vida4 Dib-Inicio"cx="225" cy="77" r="24.5" stroke="black"/>
+            <line class="Vida2 Dib-Inicio" x1="225.5" y1="102" x2="225.5" y2="202" stroke="black"/>
+            <line class="Vida3 Dib-Inicio" x1="225.354" y1="127.354" x2="200.354" y2="152.354" stroke="black"/>
+            <line class="Vida1 Dib-Inicio" x1="225.354" y1="201.354" x2="200.354" y2="226.354" stroke="black"/>
+            <line class="Vida1 Dib-Inicio" x1="250.646" y1="152.354" x2="225.646" y2="127.354" stroke="black"/>
+            <line class="Vida3 Dib-Inicio" x1="250.646" y1="226.354" x2="225.646" y2="201.354" stroke="black"/>
+            <line class="Vida6 Dib-Inicio" x1="25.5" y1="2" x2="25.5" y2="272" stroke="black"/>
+            <line class="Vida5 Dib-Inicio" y1="-0.5" x2="39.2374" y2="-0.5" transform="matrix(-0.637147 0.770742 -0.637147 -0.770742 25 271.758)" stroke="black"/>
+            <line class="Vida5 Dib-Inicio" y1="-0.5" x2="39.2374" y2="-0.5" transform="matrix(-0.637147 -0.770742 0.637147 -0.770742 51 302)" stroke="black"/>
+            <line class="Vida8 Dib-Inicio" x1="215.177" y1="68.1768" x2="211.177" y2="72.1768" stroke="black" stroke-width="0.5"/>
+            <line class="Vida8 Dib-Inicio" x1="214.823" y1="72.1768" x2="210.823" y2="68.1768" stroke="black" stroke-width="0.5"/>
+            <line class="Vida8 Dib-Inicio" x1="239.177" y1="68.1768" x2="235.177" y2="72.1768" stroke="black" stroke-width="0.5"/>
+            <line class="Vida8 Dib-Inicio" x1="238.823" y1="72.1768" x2="234.823" y2="68.1768" stroke="black" stroke-width="0.5"/>
+            <path class="Vida8 Dib-Inicio" d="M211 83.5H214.5L217.5 85.5L221.5 83.5L225 85.5L228.5 83.5L232 85.5L235.5 83.5H239" stroke="black"/>
+            <line class="Vida7 Dib-Inicio" x1="25" y1="1.5" x2="225" y2="1.5" stroke="black"/>
+            <path class="Vida8 Dib-Inicio" d="M225.5 1L224.5 13.5L226.5 26.5L224.5 39.5L225.5 52" stroke="#663B1D"/>
+            </svg></article>    
+    </section>
 
-
-        <article class="Output__Texto"><!--Display flex-column para poner avisos sobre palabra-->
-            <p class="Output__Texto__Avisos">Esto es un campo de texto para darle informacion complementaria al jugador</p>
-
-            
-            <div class="Output__Texto__Palabra"><!--Display flex-row con spam 0 para dar un efecto de continuidad-->
-                <div class="Output__Texto__Palabra__Caracter"><!--display flex-column para alinear letra sobre linea; con spam-->
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra">P</h3> <!--Letra (inicialmente invisible) de la palabra a adivinar-->
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div><!--Espacio/linea (visible) de la palabra a adivinar-->
+    <section class="Output--Palabra"><!--Display flex-column para poner avisos sobre palabra-->
+        <article class="Output--Palabra__Texto">
+            <p class="Output--Palabra__Texto__Avisos">Esto es un campo de texto para darle informacion complementaria al jugador</p>
+            <div class="Output--Palabra__Texto__Palabra"><!--Display flex-row con spam 0 para dar un efecto de continuidad-->
+                <div class="Output--Palabra__Texto__Palabra__Caracter"><!--display flex-column para alinear letra sobre linea; con spam-->
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra">P</h3> <!--Letra (inicialmente invisible) de la palabra a adivinar-->
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div><!--Espacio/linea (visible) de la palabra a adivinar-->
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra">R</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra">R</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra Disable">O</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra Disable">O</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra">G</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra">G</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra">R</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra">R</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra Disable">A</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra Disable">A</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra Disable">M</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra Disable">M</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra Disable">A</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra Disable">A</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter">
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra">R</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter">
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra">R</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
-                <div class="Output__Texto__Palabra__Caracter Disable"> <!-- Con Disable podemos eliminar caacteres-->
-                    <h3 class="Output__Texto__Palabra__Caracter__Letra">.</h3>
-                    <div class="Output__Texto__Palabra__Caracter__Linea"></div>
+                <div class="Output--Palabra__Texto__Palabra__Caracter Disable"> <!-- Con Disable podemos eliminar caacteres-->
+                    <h3 class="Output--Palabra__Texto__Palabra__Caracter__Letra">.</h3>
+                    <div class="Output--Palabra__Texto__Palabra__Caracter__Linea"></div>
                 </div>
             </div>
         </article>
