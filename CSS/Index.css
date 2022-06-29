@@ -137,9 +137,9 @@ body{
     background: #E4E4E4;
     text-align: center;
     font-size: 1em;
-    width: 80%;
+    width: 100%;
     align-self: center;
-    height: 6rem;
+    height: 100%;
     margin: 2rem;
     line-height: 3rem;
 
@@ -203,9 +203,6 @@ body{
 
 /*  STICKMAN    */
 
-.Dib-Inicio{
-    opacity: 0%;
-}
 
 #SVG-Stickman{
     height: 90%;
@@ -238,6 +235,7 @@ body{
 .Vida8{
     opacity: 100%;
 }
+
 
 
 
