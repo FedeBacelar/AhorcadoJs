@@ -66,7 +66,10 @@ body{
 
 
 /*  Output AHORCADO */
-
+.Output--Dibujo-articleImg img{
+    width: 300px;
+    height: 300px;
+}
 .Output--Dibujo{
     grid-area: DIBUJO;
     display: flex;
@@ -201,46 +204,6 @@ body{
 
 
 
-/*  STICKMAN    */
-
-
-#SVG-Stickman{
-    height: 90%;
-    width: 90%;
-}
-
-.Vida1{
-    opacity: 100%;
-}
-.Vida2{
-    opacity: 100%;
-}
-
-.Vida3{
-    opacity: 100%;
-}
-
-.Vida4{
-    opacity: 100%;
-}
-.Vida5{
-    opacity: 100%;
-}
-.Vida6{
-    opacity: 100%;
-}
-.Vida7{
-    opacity: 100%;
-}
-.Vida8{
-    opacity: 100%;
-}
-
-
-
-
-
-
 /*  Responsive  */
 
 @media screen and (min-width: 1300px) {
@@ -263,6 +226,7 @@ body{
     }
     .Output--Dibujo{
         height: calc(32vh - 2rem);
+        
     }
     .Input{
         height: 25vh;

@@ -45,17 +45,22 @@ class Jugador{
 }
 
 function desactivarLetra(jugador){
-    let inputLetras = document.getElementsByClassName("Input__Letras__Letra")
-    for(const letraHTML of inputLetras){
-        let letra = letraHTML.innerHTML
-        if(jugador.caracteresUsados.includes(letra.toLowerCase())){
-            letraHTML.className = "Input__Letras__Letra Mid-Disable";
+    //Se usa para agregar la clase 'Mid-Disable' a las letras usadas
+    
+    const arrayInputLetras = [...document.getElementsByClassName("Input__Letras__Letra")]
+    arrayInputLetras.forEach(elemento => {
+
+        const letra = (elemento.innerHTML).toLowerCase();
+        if(jugador.caracteresUsados.includes(letra)){
+            elemento.className = "Input__Letras__Letra Mid-Disable";
         }
-    }
+    });
+    
 
 }
 
 function modificarPalabraHTML(jugador){
+    //Se usa para mostrar la palabra a medida que se revela por el ingreso de datos
    
     let palabraHTML = document.querySelector(".Output--Palabra__Texto__Palabra")
     palabraHTML.innerHTML = ""; //Limpiamos la palabra para reconstruirla
@@ -71,20 +76,18 @@ function modificarPalabraHTML(jugador){
         }
 
         palabraHTML.append(divMayor);
-
     }
-
 }
 
 function mostrarMensaje(Mensaje){
-    //Output--Palabra__Texto__Avisos
-    //TIPOS DE MENSAJES: Finales e intermedios
-    //Acertaste
-    //No acertaste
-    //GANASTE
-    //PERDISTE
     let contenedorDelMensaje = document.querySelector(".Output--Palabra__Texto__Avisos");
     contenedorDelMensaje.innerText = Mensaje;
+}
+
+function actualizaImagen(vidasRestantes){
+    //Modificamos la ruta de la imagen del ahorcado: Cada vida significa un dibujo distinto
+    let contenedorImagen = document.querySelector(".Output--Dibujo-articleImg")
+    contenedorImagen.innerHTML = "<img src='imgs/Ahorcado" + vidasRestantes + "Vida.png'>";
 }
 
 function noEsLetra(caracter){
@@ -108,11 +111,12 @@ function ingreso(jugador){
 }
 
 function main(){
-    const jugador = new Jugador("casa");
+    const jugador = new Jugador("hola"); //ASIGNAR PALABRA 
     jugador.ocultarPalabra();
     let caracterIngresado;
     const MAX_VIDAS = 8;
     modificarPalabraHTML(jugador); //Construyo la base de la palabra: _ _ _ _ _
+    actualizaImagen(jugador.vidasRestantes(MAX_VIDAS));
     while(jugador.vidasRestantes(MAX_VIDAS) != 0 && jugador.palabraSinRevelar()){
     
         caracterIngresado = ingreso(jugador);
@@ -129,13 +133,15 @@ function main(){
             //BORRAR ALERT
             alert("FALLASTE... " + jugador.vidasRestantes(MAX_VIDAS) + " VIDAS RESTANTES\n" + "------------------------------------------------------------\n" + "La letra '" + caracterIngresado.toUpperCase() + "' no estaba en la palabra" + "\n------------------------------------------------------------");
         }
+        console.log("a")
+        actualizaImagen(jugador.vidasRestantes(MAX_VIDAS));    
+        
     }
     if(jugador.palabraSinRevelar()){
         mostrarMensaje("Perdiste :(\n------------------------------------------------------------\n La palabra era: " + jugador.palabraAdivinar + "\n------------------------------------------------------------\n");
     }else{
         mostrarMensaje("GANASTE! :)\n------------------------------------------------------------\n La palabra era: " + jugador.palabraAdivinar + "\n------------------------------------------------------------\n");
     }
-
 }
 
 main();
