@@ -1,0 +1,54 @@
+/*  Output Palabra  */
+
+.Output--Palabra{
+    &__Texto{
+        &__Avisos{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #E4E4E4;
+            text-align: center;
+            font-size: 1em;
+            width: 100%;
+            align-self: center;
+            height: 100%;
+            margin: 2rem;
+            line-height: 3rem;
+        
+        }
+        &__Palabra{
+            &__Caracter{
+                &__Letra{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.796);
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    font-size: 3em;
+                }
+                &__Linea{
+                    display: inline-block;
+                    background-color: black;
+                    width: 2.5rem;
+                    height: 0.2rem;
+                
+                }
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+                width: 3.5rem;
+            
+            }
+            display: flex;
+            flex-direction: row;
+            margin: 3rem 0rem;
+            height: 75.2px;
+            
+        }
+    }
+}
+
+

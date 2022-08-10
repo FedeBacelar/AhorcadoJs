@@ -1,4 +1,13 @@
 
+class Palabras{
+    constructor(arrayPalabras){
+        this.Aleatorio = arrayPalabras.map(ObjPlabra => ObjPlabra.palabra)
+        this.Facil = arrayPalabras.filter(ObjPalabra => ObjPalabra.dificultad === 1).map(ObjPlabra => ObjPlabra.palabra);
+        this.Normal = arrayPalabras.filter(ObjPalabra => ObjPalabra.dificultad === 2).map(ObjPlabra => ObjPlabra.palabra);
+        this.Dificil = arrayPalabras.filter(ObjPalabra => ObjPalabra.dificultad === 3).map(ObjPlabra => ObjPlabra.palabra);
+    }
+}
+
 class Jugador{
     constructor(nombre){
         this.nombreDelJugador = nombre;
@@ -149,8 +158,7 @@ function evaluarResultado(partida, jugador){
     }
 }
 
-function asignarPalabra(){
-     
+function asignarPalabra(){ 
     const listaDePalabras = JSON.parse(localStorage.getItem("palabras"));
     console.log(listaDePalabras)
     const indiceElegido = Math.floor(Math.random() * listaDePalabras.length);
@@ -172,7 +180,6 @@ function Constructor(palabra, retomarDatos = false){
     } else{
         partida.ocultarPalabra();
     }
-
     mostrarMensaje(mensaje, partida);
     modificarPalabraHTML(partida);
     actualizaImagen(partida.vidasRestantes()); 
@@ -225,15 +232,10 @@ function guardarDatos(jugador){
 }
 
 function main(){ 
-    //Si NO existe en el storage un array de palabras, lo creamos (esto para evitar errores por el uso del storage.clear())
-    if(!localStorage.getItem("palabras")){
-        let ArrayPalabras = ["hola", "chau", "correr", "manteca", "teclado", "saltar", "correcaminos"];
-        localStorage.setItem("palabras", JSON.stringify(ArrayPalabras));
-    }
-    TomarPalabra();
-
-
+    consultarAPI(); //Consultamos la disponibilidad de palabras para el juego
     let partida = Constructor(asignarPalabra(), true);
+
+    //Evento de interaccion con el jugador
     let letrasHTML = [...document.getElementsByClassName("Input__Letras__Letra")];
     letrasHTML.forEach(letraHTML => {
         letraHTML.addEventListener('click', () =>{
@@ -260,8 +262,8 @@ function main(){
                     actualizaImagen(partida.vidasRestantes());
                     evaluarResultado(partida,partida.jugador);
                     CrearBackup(partida);
-
-                    if(partida.partidaTerminada()){
+                    //Mensajes de finalizacion de la partida 
+                    if(partida.partidaTerminada()){ //Si la partida termina de forma natural
                         if(partida.vidasRestantes() != 0){
                             //Sweet Alert para ganar
                             Swal.fire({
@@ -283,8 +285,7 @@ function main(){
                                 partida = reset(partida);
                             })    
                         }
-                    }
-
+                    }   
                 } else if (!letraNoIngresada && !(partida.partidaTerminada())){
                     console.log("Letra ya ingresada");
                 } else {
@@ -292,14 +293,36 @@ function main(){
                 }        
         })
     })
+
+    //Evento de reseteo
     const btnReset = document.querySelector(".Header__Reset");
     btnReset.addEventListener('click', () => {
         partida = reset(partida);
     })
+
+    //Evento de cambio de dificultad
+    const Dificultades = [...document.querySelectorAll(".Header__Dificultad__Seleccion li")];
+    const DificultadElegida = document.querySelector(".Header__Dificultad__Seleccionado")
+    Dificultades.forEach(dificultad => {
+        dificultad.addEventListener('click', ()=>{
+            if(DificultadElegida.innerHTML != dificultad.innerHTML){
+                Swal.fire({
+                    title: "Desea cambiar la dificultad a " + dificultad.innerHTML + "?",
+                    text: "Esta accion borrara la partida en curso",
+                    icon: 'info',
+                    showDenyButton: true
+                }).then((result) =>{
+                    if(result.isConfirmed){
+                        DificultadElegida.innerHTML = dificultad.innerHTML;
+                        formatearDificultad(dificultad.innerText, partida).then((partidaReseteada) => partida = partidaReseteada) 
+                    }
+                })
+            }
+        })
+    })
 }
 
 function reset(partida){
-    TomarPalabra(); //Agregamos una palabra a la lista de juego (cada vez que se oprima 'reset')
     let letrasHTML = [...document.getElementsByClassName("Input__Letras__Letra")];
     partida = Constructor(asignarPalabra());
     reactivarLetras(letrasHTML);
@@ -308,68 +331,39 @@ function reset(partida){
     return partida;
 }
 
+function consultarAPI(dificultad = "Aleatorio"){
+    return new Promise((resolve, reject) =>{
+        fetch('./JSON/API.json')
+        .then(response => response.json())
+        .then(response => {
+            const PalabrasOrdenadas = new Palabras(response);
+            //Llenamos el localStorage segun la dificultad deseada
+            console.log("Simulando peticion a una API")
+            setTimeout(() =>{
+                if(dificultad === "Facil"){
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Facil)); //SE ELIGE LA DIFICULTAD
+                } else if(dificultad === "Normal"){
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Normal)); //SE ELIGE LA DIFICULTAD
+                }else if(dificultad === "Dificil"){
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Dificil)); //SE ELIGE LA DIFICULTAD
+                } else{
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Aleatorio));
+                }
+                resolve("Datos cargados con extio")
+            }, 500) //Los segundos estan para "simular" la tardanza en la respuesta de la API 
+        })
+    })
+}
+
+async function formatearDificultad(dificultad, partida){
+    promesaResuelta = await consultarAPI(dificultad);
+    console.log(promesaResuelta)
+    partida = reset(partida);
+    return partida
+}
+
 main();
 
-async function Traducir(palabra){
-    const configBody = new URLSearchParams();
-    configBody.append("q", palabra); //Palabra sin traducir
-    configBody.append("source", "pt"); //Idioma de la palabra
-    configBody.append("target", "es"); //Idioma a traducir
-    
-    const options = {
-    method: 'POST',
-    headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'Accept-Encoding': 'application/gzip',
-        'X-RapidAPI-Key': '456c96cf8fmshce44099be401994p1ad321jsnf0d4c6ba3ace',
-        'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
-    },
-    body: configBody
-    };
-    
-    const palabraTraducida = await fetch('https://google-translate1.p.rapidapi.com/language/translate/v2', options)
-    .then(response => response.json())
-    .then(response => {
-        
-        const Palabras = JSON.parse(localStorage.getItem("palabras")) //Listado de palabras para jugar
-        const PalabraAPI = response.data.translations[0].translatedText; //Palabra retornada (y traducida) de las APIs
-        console.log(PalabraAPI)
 
-        //Si lo obtenido es una palabra lo agregamos a la lista (una traduccion de una palabra puede estar dada mediante frases o con caracteres no esperados)
-        if(evaluarSiEsPalabra(PalabraAPI) && PalabraAPI.length <= 10){
-            console.log("Palabra aceptada")
-            localStorage.setItem("palabras", JSON.stringify([...Palabras,(PalabraAPI.toLowerCase())]));
-        }
-    })
-    .catch(err => console.error("Ocurrio un error en la traduccion: " + err));
-}
-
-async function TomarPalabra(){
-    /*
-    Guarda una nueva palabra en el localStorge (recibida desde una API de palabras en Portugues) para luego ser traducida (mediante
-    una API de google traductor) y asi poder expandir una lista de palabras (que seran las elegidas para jugar)  
-    */
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '456c96cf8fmshce44099be401994p1ad321jsnf0d4c6ba3ace',
-            'X-RapidAPI-Host': 'palavras-aleatorias.p.rapidapi.com'
-        }
-    };
-    
-    const ObtenerPalabra = await fetch('https://palavras-aleatorias.p.rapidapi.com/words/5/1', options)
-        .then(response => response.json())
-        .then(response => Traducir(response[0].word))
-        .catch(err => console.error("Ocurrio un error al obtener la palabra: " + err));
-}
-
-function evaluarSiEsPalabra(palabra){
-    let esPalabra = true;
-    const CaracteresNoPermitidas = [" ", "ü", "é", "á", "í", "ó", "ú", "ñ", "Ñ"];
-    CaracteresNoPermitidas.forEach((caracterNoPermitida) => {
-        if(palabra.includes(caracterNoPermitida)){
-            esPalabra = false;
-        }
-    })
-    return esPalabra;
-}
+//RETORNAR UNA PROMESA QUE CUANDO SE CUMPLA: SURGA EL RESETEO...
+//La funcion ConsultarApi retorna una promesa

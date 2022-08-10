@@ -1,0 +1,96 @@
+/*  PUNTUACION  */
+
+.Header {
+    grid-area: HEADER;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0);
+    width: 100%;
+    height: 8vh;
+    &__Reset{
+        &:hover{
+            transition: 0.3s;
+            transform: scale(1.1);
+        }
+        cursor: pointer;
+        font-size:  1.5em;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background-color: rgb(79, 79, 79);
+        width: 14rem;
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        color: white;
+        z-index: 0;
+        border-radius: 0rem 0rem 0rem 1.5rem;
+        border-color: black;
+        align-items: center;
+        justify-content: center;
+        height: 65%;
+    }
+    &__Marcador{
+        background: #E4E4E4;
+        display: inline-block;
+        box-sizing: content-box;
+        padding: 0.5rem 4rem;
+        border-radius: 0rem 0rem 1.5rem 1.5rem;
+        z-index: 1;
+        &__Puntos{
+            display: inline-block;
+        }
+    }
+    &__Dificultad{
+        &__Seleccionado{
+            font-size:  1.5em;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin: auto 0px;
+            height: 46.8px;
+        }
+        &:hover{
+            height: 10.5rem;
+            border-radius: 0rem 0rem 1.5rem 1.5rem;
+        }
+        &__Seleccion{
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            & li{
+                font-size: 1.2rem;
+                border-top: 0.5px solid black;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                &:hover{
+                    transition: 0.3s;
+                    transform: scale(1.1);
+                }
+            }
+            
+            
+        }
+        transition: all 0.5s;
+        overflow: hidden;
+        cursor: pointer;
+        z-index: 0;
+        background-color: rgb(79, 79, 79);
+        width: 14rem;
+        border-radius: 0rem 0rem 1.5rem 0rem;
+        height: 65%;
+
+        
+    }
+}
+
+

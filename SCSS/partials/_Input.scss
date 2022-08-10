@@ -1,0 +1,32 @@
+.Input{
+    &__Letras{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: 0rem 2rem;
+        gap: 1rem;
+        justify-content: center;
+        max-width: 64rem;
+        &__Letra{
+            &:hover{
+                transform: scale(1.1);
+                background-color: rgba(0, 0, 0, 0.80);
+                cursor: pointer;
+            }
+            display: flex;
+            width: 4rem;
+            height: 4rem;
+            background-color: black;
+            color: white;
+            font-size: 3rem;
+            justify-content: center;
+            align-items: center;
+        }   
+    }
+    grid-area: INPUT;
+    background: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: center;
+    height: 22.25vh;
+    width: 100%;
+}

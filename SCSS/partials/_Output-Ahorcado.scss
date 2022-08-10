@@ -1,0 +1,17 @@
+/*  Output AHORCADO */
+
+.Output--Dibujo-articleImg{
+    img{
+        width: 300px;
+        height: 300px;
+    }
+}
+.Output--Dibujo{
+    grid-area: DIBUJO;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 38rem;
+    height: calc(66.75vh - 1rem);
+    background: #E4E4E4;
+}

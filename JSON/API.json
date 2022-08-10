@@ -1,0 +1,57 @@
+[
+    {
+        "palabra" : "oso",
+        "longitud" : 4,
+        "dificultad" : 1   
+    },
+    {
+        "palabra" : "hola",
+        "longitud" : 4,
+        "dificultad" : 1   
+    },
+    {
+        "palabra" : "pelota",
+        "longitud" : 6,
+        "dificultad" : 1   
+    },
+    {
+        "palabra" : "mesa",
+        "longitud" : 4,
+        "dificultad" : 1   
+    },
+    {
+        "palabra" : "cartuchera",
+        "longitud" : 10,
+        "dificultad" : 2   
+    },
+    {
+        "palabra" : "waterpolo",
+        "longitud" : 9,
+        "dificultad" : 2   
+    },
+    {
+        "palabra" : "yoga",
+        "longitud" : 4,
+        "dificultad" : 2   
+    },
+    {
+        "palabra" : "zafiro",
+        "longitud" : 6,
+        "dificultad" : 2   
+    },
+    {
+        "palabra" : "whisky",
+        "longitud" : 6,
+        "dificultad" : 3   
+    },
+    {
+        "palabra" : "xenofobia",
+        "longitud" : 9,
+        "dificultad" : 3   
+    },
+    {
+        "palabra" : "zambullida",
+        "longitud" : 10,
+        "dificultad" : 3   
+    }
+]

@@ -1,83 +1,59 @@
 /*  NORMALICE   */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-body{
-    background: linear-gradient(180deg, #7A0000 0%, #980202 100%, #980202 100%);
-    padding: 0px 10px 10px 10px;
-    height: 100vh;
-    width: 100vw;
-}
-
+body {
+  background: linear-gradient(180deg, #7A0000 0%, #980202 100%, #980202 100%);
+  padding: 0px 10px 10px 10px;
+  height: 100vh;
+  width: 100vw; }
 
 /*  Grid    */
+.Grid {
+  display: grid;
+  grid-template-areas: "HEADER HEADER HEADER" "DIBUJO PALABRA PALABRA" "INPUT INPUT INPUT"; }
 
-.Grid{
-    display: grid;
-    grid-template-areas: "HEADER HEADER HEADER"
-                         "DIBUJO PALABRA PALABRA"
-                         "INPUT INPUT INPUT";
-    
-    
-}
+/*  EFECTO PerderVida  */
+@keyframes sacudir {
+  25% {
+    transform: rotate(0.7deg); }
+  0% {
+    transform: scale(1.03); }
+  50% {
+    transform: rotate(-1.4deg); }
+  75% {
+    transform: rotate(1.4deg); }
+  100% {
+    transform: scale(1);
+    transform: rotate(0.7deg); } }
 
-/*  EFECTO  */
-@keyframes sacudir{
-    
-    25%{transform: rotate(0.7deg);}
-    0%{transform: scale(1.03);}
-    50%{transform: rotate(-1.4deg)}
-    75%{transform: rotate(1.4deg);}
-    100%{transform: scale(1);
-        transform: rotate(0.7deg);
-    }
-    
-}
+@keyframes expandir {
+  0% {
+    height: 0px; }
+  100% {
+    height: auto; } }
 
 .perderVida {
-    overflow: hidden;
-    animation-name: sacudir;
-    animation-duration: 0.3s;
-    
-}
+  overflow: hidden;
+  animation-name: sacudir;
+  animation-duration: 0.3s; }
 
 /*  PUNTUACION  */
-
 .Header {
-    grid-area: HEADER;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    background: rgba(255, 255, 255, 0);
-    width: 100%;
-    height: 8vh;
-}
-
-.Header__Marcador{
-    background: #E4E4E4;
-    display: inline-block;
-    box-sizing: content-box;
-    padding: 0.5rem 4rem;
-    border-radius: 0rem 0rem 1.5rem 1.5rem;
-    z-index: 1;
-}
-.Header__Marcador__Puntos{
-    display: inline-block;
-}
-.Header__Reset:hover{
-    transition: 0.3s;
-    transform: scale(1.1);
-}
-.Header__Reset{
+  grid-area: HEADER;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background: rgba(255, 255, 255, 0);
+  width: 100%;
+  height: 8vh; }
+  .Header__Reset {
     cursor: pointer;
-    font-size:  1.5em;
+    font-size: 1.5em;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: rgb(79, 79, 79);
+    background-color: #4f4f4f;
     width: 14rem;
     display: flex;
     flex-direction: row;
@@ -88,254 +64,200 @@ body{
     border-color: black;
     align-items: center;
     justify-content: center;
-    height: 65%;
-}
-.Header__Ranking:hover{
-    transition: 0.3s;
-    transform: scale(1.1);
-}
-.Header__Ranking{
+    height: 65%; }
+    .Header__Reset:hover {
+      transition: 0.3s;
+      transform: scale(1.1); }
+  .Header__Marcador {
+    background: #E4E4E4;
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0.5rem 4rem;
+    border-radius: 0rem 0rem 1.5rem 1.5rem;
+    z-index: 1; }
+    .Header__Marcador__Puntos {
+      display: inline-block; }
+  .Header__Dificultad {
+    transition: all 0.5s;
+    overflow: hidden;
     cursor: pointer;
-    font-size:  1.5em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     z-index: 0;
-    background-color: rgb(79, 79, 79);
+    background-color: #4f4f4f;
     width: 14rem;
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
-    color: white;
     border-radius: 0rem 0rem 1.5rem 0rem;
-    align-items: center;
-    justify-content: center;
-    height: 65%;
-}
-
+    height: 65%; }
+    .Header__Dificultad__Seleccionado {
+      font-size: 1.5em;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin: auto 0px;
+      height: 46.8px; }
+    .Header__Dificultad:hover {
+      height: 10.5rem;
+      border-radius: 0rem 0rem 1.5rem 1.5rem; }
+    .Header__Dificultad__Seleccion {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0; }
+      .Header__Dificultad__Seleccion li {
+        font-size: 1.2rem;
+        border-top: 0.5px solid black;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; }
+        .Header__Dificultad__Seleccion li:hover {
+          transition: 0.3s;
+          transform: scale(1.1); }
 
 /*  OUTPUT  */
-
-.Output--Palabra{
-    grid-area: PALABRA;
-    height: calc(66.75vh - 1rem);
-    background: rgba(255, 255, 255, 0);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
+.Output--Palabra {
+  grid-area: PALABRA;
+  height: calc(66.75vh - 1rem);
+  background: rgba(255, 255, 255, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
 
 /*  Output AHORCADO */
-.Output--Dibujo-articleImg img{
-    width: 300px;
-    height: 300px;
-}
-.Output--Dibujo{
-    grid-area: DIBUJO;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 38rem;
-    height: calc(66.75vh - 1rem);
-    background: #E4E4E4;
-    margin: 1rem 1rem;
-}
+.Output--Dibujo-articleImg img {
+  width: 300px;
+  height: 300px; }
 
-
+.Output--Dibujo {
+  grid-area: DIBUJO;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 38rem;
+  height: calc(66.75vh - 1rem);
+  background: #E4E4E4; }
 
 /*  Output Texto    */
-
-.Output--Palabra__Texto{
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-
-}
-
+.Output--Palabra__Texto {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; }
 
 /*  Output Palabra  */
+.Output--Palabra__Texto__Avisos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #E4E4E4;
+  text-align: center;
+  font-size: 1em;
+  width: 100%;
+  align-self: center;
+  height: 100%;
+  margin: 2rem;
+  line-height: 3rem; }
 
-.Output--Palabra__Texto__Palabra{
-    display: flex;
-    flex-direction: row;
-    margin: 3rem 0rem;
-    height: 75.2px;
-
-}
-
-.Output--Palabra__Texto__Palabra__Caracter{
+.Output--Palabra__Texto__Palabra {
+  display: flex;
+  flex-direction: row;
+  margin: 3rem 0rem;
+  height: 75.2px; }
+  .Output--Palabra__Texto__Palabra__Caracter {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    gap: 1rem;
-    width: 3.5rem;
+    width: 3.5rem; }
+    .Output--Palabra__Texto__Palabra__Caracter__Letra {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.796);
+      width: 3.5rem;
+      height: 3.5rem;
+      font-size: 3em; }
+    .Output--Palabra__Texto__Palabra__Caracter__Linea {
+      display: inline-block;
+      background-color: black;
+      width: 2.5rem;
+      height: 0.2rem; }
 
-}
-
-.Output--Palabra__Texto__Palabra__Caracter__Letra{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.796);
-    width: 3.5rem;
-    height: 3.5rem;
-    font-size: 3em;
-}
-
-.Output--Palabra__Texto__Palabra__Caracter__Linea{
-    display: inline-block;
-    background-color: black;
-    width: 2.5rem;
-    height: 0.2rem;
-
-}
-
-.Output--Palabra__Texto__Avisos{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #E4E4E4;
-    text-align: center;
-    font-size: 1em;
-    width: 100%;
-    align-self: center;
-    height: 100%;
-    margin: 2rem;
-    line-height: 3rem;
-
-}
-
-
-
-
-/*  Input   */
-
-.Input{
-    grid-area: INPUT;
-    background: rgba(255, 255, 255, 0);
-    display: flex;
-    justify-content: center;
-    height: 22.25vh;
-    max-width: 1490px;
-}
-
-.Input__Letras{
+.Input {
+  grid-area: INPUT;
+  background: rgba(255, 255, 255, 0);
+  display: flex;
+  justify-content: center;
+  height: 22.25vh;
+  width: 100%; }
+  .Input__Letras {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     margin: 0rem 2rem;
     gap: 1rem;
     justify-content: center;
-    width: 64rem;
-    
-}
-
-.Input__Letras__Letra{
-    display: flex;
-    width: 4rem;
-    height: 4rem;
-    background-color: black;
-    color: white;
-    font-size: 3rem;
-    justify-content: center;
-    align-items: center;
-}
-
-.Input__Letras__Letra:hover{
-    transform: scale(1.1);
-    background-color: rgba(0, 0, 0, 0.80);
-    cursor: pointer;
-}
-
-.Mid-Disable:hover{
-    transform: scale(1);
-    background-color: black;
-    cursor: pointer;
-}
-
-
+    max-width: 64rem; }
+    .Input__Letras__Letra {
+      display: flex;
+      width: 4rem;
+      height: 4rem;
+      background-color: black;
+      color: white;
+      font-size: 3rem;
+      justify-content: center;
+      align-items: center; }
+      .Input__Letras__Letra:hover {
+        transform: scale(1.1);
+        background-color: rgba(0, 0, 0, 0.8);
+        cursor: pointer; }
 
 /*  EVENTOS */
+.Disable {
+  display: none; }
 
-.Disable{
-    display: none;
-}
+.Mid-Disable {
+  opacity: 50%; }
+  .Mid-Disable:hover {
+    transform: scale(1);
+    background-color: black;
+    cursor: pointer; }
 
-.Mid-Disable{
-    opacity: 50%;
-}
+@media screen and (max-width: 1360px) {
+  .Grid {
+    grid-template-areas: "HEADER HEADER HEADER" "DIBUJO DIBUJO DIBUJO" "PALABRA PALABRA PALABRA" "INPUT INPUT INPUT";
+    grid-template-rows: 82px 420px 400px 225px;
+    height: auto; }
+  .Output--Dibujo {
+    width: 100%;
+    height: 400px;
+    background: none; }
+    .Output--Dibujo-articleImg img {
+      width: 400px;
+      height: 400px; }
+  .Output--Palabra {
+    height: 400px;
+    width: 100%; }
+    .Output--Palabra__Texto {
+      margin-top: 0px; }
+      .Output--Palabra__Texto__Avisos {
+        height: 175px;
+        width: 800px;
+        margin-top: 0px; }
+  .Input__Letras {
+    height: auto;
+    width: auto; } }
 
-
-
-/*  Responsive  */
-
-@media screen and (min-width: 1300px) {
-    .Grid{
-        justify-content:center;
-        align-items: center;
-        column-gap: 5rem;
-    }
-}
-
-@media screen and (max-width: 1180px) {
-    .Grid{
-        grid-template-areas: "HEADER HEADER HEADER"
-                             "DIBUJO DIBUJO DIBUJO"
-                             "PALABRA PALABRA PALABRA"
-                             "INPUT INPUT INPUT";
-    }
-    .Output--Palabra{
-        height: 35vh;
-    }
-    .Output--Dibujo{
-        height: calc(32vh - 2rem);
-        
-    }
-    .Input{
-        height: 25vh;
-
-    }
-    .Input__Letras{
-        margin: 0rem;
-        flex-wrap: wrap;
-        width: auto;
-    }
-
-}
-
-@media screen and (max-width: 735px) {
-    .Header{
-        height: 5vh;
-    }
-    #SVG-Stickman{
-        width: auto;
-        height: 230px;
-    }
-    .Output--Dibujo{
-        width: auto;
-        height: calc(25vh - 2rem);
-    }
-    .Output--Palabra{
-        height: 23vh;
-    }
-    .Input{
-        height: 37vh;
-    }
-
-    .Output--Palabra__Texto__Avisos{
-        margin: 0.1rem;
-    }
-    .Output--Palabra__Texto__Palabra{
-        margin: 2rem;
-    }
-
-    .Input__Letras__Letra{
-        width: 3.5rem;
-        height: 3.5rem;
-        font-size: 2.5rem;
-    }
-}
+@media screen and (max-width: 920px) {
+  .Output--Palabra__Texto__Avisos {
+    width: 100%; }
+  .Grid {
+    grid-template-rows: 82px 420px 400px 400px; } }

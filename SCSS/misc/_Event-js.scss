@@ -1,0 +1,15 @@
+/*  EVENTOS */
+
+.Disable{
+    display: none;
+}
+
+.Mid-Disable{
+    opacity: 50%;
+    &:hover{
+        transform: scale(1);
+        background-color: black;
+        cursor: pointer;
+    }
+}
+

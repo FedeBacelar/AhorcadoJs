@@ -1,0 +1,24 @@
+/*  EFECTO PerderVida  */
+@keyframes sacudir{
+    
+    25%{transform: rotate(0.7deg);}
+    0%{transform: scale(1.03);}
+    50%{transform: rotate(-1.4deg)}
+    75%{transform: rotate(1.4deg);}
+    100%{transform: scale(1);
+        transform: rotate(0.7deg);
+    }
+    
+}
+
+@keyframes expandir{
+    0%{height: 0px;}
+    100%{height: auto;}
+}
+
+.perderVida {
+    overflow: hidden;
+    animation-name: sacudir;
+    animation-duration: 0.3s;
+    
+}
