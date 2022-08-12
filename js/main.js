@@ -122,7 +122,7 @@ function mostrarMensaje(mensaje, partida){
     const Mensaje = {
         bienvenido : "Bienvenido! inicialmente tienes " + partida.vidasRestantes() + " VIDAS\n" + "------------------------------------------------------------\n" + "Haga click sobre las letras para comenzar el turno" + "\n------------------------------------------------------------",
         seguirPartida : "Bienvenido! tienes " + partida.vidasRestantes() + " VIDAS\n" + "------------------------------------------------------------\n" + "Haga click sobre las letras para seguir con el turno" + "\n------------------------------------------------------------",
-        acerto : "ACERTASTE\n------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' estaba en la palabra: " + partida.palabraOculta + "\n------------------------------------------------------------",
+        acerto : "ACERTASTE\n------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' estaba en la palabra" + "\n------------------------------------------------------------",
         fallo : "FALLASTE... " + partida.vidasRestantes() + " VIDAS RESTANTES\n" + "------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' no estaba en la palabra" + "\n------------------------------------------------------------",
         gano : "GANASTE\n------------------------------------------------------------\n" + "La palabra era: '" + partida.palabraAdivinar + "'.\n------------------------------------------------------------",
         perdio : "PERDISTE\n------------------------------------------------------------\n" + "La palabra era: '" + partida.palabraAdivinar + "'. Suerte para la proxima!\n------------------------------------------------------------",
@@ -138,10 +138,10 @@ function actualizaImagen(vidasRestantes){
 }
 
 function mostrarEfecto(){ 
-    const pantalla = document.querySelector("body");
-    pantalla.className = ("Grid perderVida")
+    const pantalla = document.querySelector(".ContenedorOutput");
+    pantalla.className = ("ContenedorOutput perderVida")
     setTimeout(() => {
-        pantalla.className = ("Grid");
+        pantalla.className = ("ContenedorOutput");
     }, 300)
 }
 

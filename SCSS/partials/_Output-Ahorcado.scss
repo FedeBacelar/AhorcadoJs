@@ -7,11 +7,15 @@
     }
 }
 .Output--Dibujo{
-    grid-area: DIBUJO;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 38rem;
+    min-height: 32rem;
+    max-height: 45rem;
+    max-width: 50rem;
+    width: 50%;
     height: calc(66.75vh - 1rem);
     background: #E4E4E4;
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
 }

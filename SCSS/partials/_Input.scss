@@ -6,7 +6,10 @@
         margin: 0rem 2rem;
         gap: 1rem;
         justify-content: center;
+        align-items: center;
         max-width: 64rem;
+        min-height: 12.5rem;
+        height: 12.5rem;
         &__Letra{
             &:hover{
                 transform: scale(1.1);
@@ -23,10 +26,9 @@
             align-items: center;
         }   
     }
-    grid-area: INPUT;
     background: rgba(255, 255, 255, 0);
     display: flex;
     justify-content: center;
-    height: 22.25vh;
     width: 100%;
+    
 }

@@ -1,63 +1,47 @@
-//Quiebre en 1360 width
-//Min-heigth: 800
-
-@media screen and(max-width: 1360px) {
-    .Grid{
-        grid-template-areas: 
-        "HEADER HEADER HEADER"
-        "DIBUJO DIBUJO DIBUJO"
-        "PALABRA PALABRA PALABRA"
-        "INPUT INPUT INPUT";
-        grid-template-rows: 82px 420px 400px 225px;
+@media screen and (max-width: 1160px){
+    body{
+        height: 100%;
+    }
+    .Contenedor{
         height: auto;
     }
-    .Output{
-        &--Dibujo{
-            width: 100%;
-            height: 400px;
-            background: none;
-            &-articleImg{
-                img{
-                    width: 400px;
-                    height: 400px;
-                }
-            }
-        }
-        &--Palabra{
-            height: 400px;
-            width:100%;
-            &__Texto{
-                margin-top: 0px;
-                &__Avisos{
-                    height: 175px;
-                    width: 800px;
-                    margin-top: 0px;
-                }
+    .ContenedorOutput{
+        flex-direction: column;
+    }
+    .Output--Palabra{
+        width: 80%;
+        height: 27.5rem;
+        &__Texto{
+            width: 80%;
+            &__Avisos{
+                max-height: 12.5rem;
+                min-width: 25rem;
             }
         }
     }
-      
-    .Input{
-        &__Letras{
-            height: auto;
-            width: auto;
-        }
+    .Output--Dibujo{
+        height: 45rem;
+        width: 80%;
+        min-width: 25.6rem;
     }
-    
 }
 
-@media screen and(max-width:920px){
-    .Output{
-        &--Palabra{
-            &__Texto{
-                &__Avisos{
-                    width: 100%;
+@media screen and(max-width: 920px) {
+    .Output--Palabra{
+        min-height:13.125rem;
+        height: 13.125rem;
+        width: 100%;
+
+        &__Texto{
+            &__Avisos{
+                display: none;
+            }
+            width: 100%;
+            &__Palabra{
+                &__Caracter{
+                    width: 3rem;
                 }
             }
         }
     }
-    .Grid{
-        grid-template-rows: 82px 420px 400px 400px;
-    }
-    
 }

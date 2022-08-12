@@ -1,6 +1,9 @@
 /*  Output Palabra  */
 
 .Output--Palabra{
+    min-height: 32rem;
+    max-height: 45rem;
+    width: 50%;
     &__Texto{
         &__Avisos{
             display: flex;
@@ -12,8 +15,9 @@
             width: 100%;
             align-self: center;
             height: 100%;
-            margin: 2rem;
+            margin: 2rem 0rem;
             line-height: 3rem;
+            
         
         }
         &__Palabra{
@@ -45,9 +49,10 @@
             display: flex;
             flex-direction: row;
             margin: 3rem 0rem;
-            height: 75.2px;
+            height: 5rem;
             
         }
+        margin: 1rem 0rem;
     }
 }
 
