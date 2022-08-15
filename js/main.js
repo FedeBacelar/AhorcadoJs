@@ -1,4 +1,3 @@
-
 class Palabras{
     constructor(arrayPalabras){
         this.Aleatorio = arrayPalabras.map(ObjPlabra => ObjPlabra.palabra)
@@ -231,10 +230,47 @@ function guardarDatos(jugador){
      localStorage.setItem(jugador.nombreDelJugador, JsonString);
 }
 
-function main(){ 
-    consultarAPI(); //Consultamos la disponibilidad de palabras para el juego
-    let partida = Constructor(asignarPalabra(), true);
+function reset(partida){
+    let letrasHTML = [...document.getElementsByClassName("Input__Letras__Letra")];
+    partida = Constructor(asignarPalabra());
+    reactivarLetras(letrasHTML);
+    actualizarPuntaje(partida);
+    sessionStorage.clear();
+    return partida;
+}
 
+function consultarAPI(dificultad = "Aleatorio"){
+    return new Promise((resolve, reject) =>{
+        fetch('./JSON/API.json')
+        .then(response => response.json())
+        .then(response => {
+            const PalabrasOrdenadas = new Palabras(response);
+            //Llenamos el localStorage segun la dificultad deseada
+            console.log("Simulando peticion a una API")
+            setTimeout(() =>{
+                if(dificultad === "Facil"){
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Facil)); 
+                } else if(dificultad === "Normal"){
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Normal))
+                }else if(dificultad === "Dificil"){
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Dificil));
+                } else{
+                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Aleatorio));
+                }
+                resolve("Datos cargados con extio")
+            }, 500) //Los segundos estan para "simular" la tardanza en la respuesta de la API 
+        })
+    })
+}
+
+async function formatearDificultad(dificultad, partida){
+    promesaResuelta = await consultarAPI(dificultad);
+    console.log(promesaResuelta)
+    partida = reset(partida);
+    return partida
+}
+
+function generarEventos(partida){
     //Evento de interaccion con el jugador
     let letrasHTML = [...document.getElementsByClassName("Input__Letras__Letra")];
     letrasHTML.forEach(letraHTML => {
@@ -242,25 +278,25 @@ function main(){
             partida.ultimoIngreso = letraHTML.innerHTML.toLowerCase();
             const letraNoIngresada = !(letraHTML.className.includes("Mid-Disable"));
             
-                if(letraNoIngresada && !(partida.partidaTerminada())){
-            
-                    if(partida.letraEnPalabra()){ 
-                        partida.actualizarPalabra();
-                        modificarPalabraHTML(partida);
-                        mostrarMensaje("acerto", partida);   
-                        partida.sumarPunto();
-                          
-                    } else{
-                        partida.perderVida();
-                        mostrarEfecto();
-                        mostrarMensaje("fallo", partida);
-                        partida.restarPunto();
-                    }
-                    actualizarPuntaje(partida);
-                    partida.guardarLetra(letraHTML.innerText)
-                    desactivarLetra(letraHTML);
-                    actualizaImagen(partida.vidasRestantes());
-                    evaluarResultado(partida,partida.jugador);
+            if(letraNoIngresada && !(partida.partidaTerminada())){
+                
+                if(partida.letraEnPalabra()){ 
+                    partida.actualizarPalabra();
+                    modificarPalabraHTML(partida);
+                    mostrarMensaje("acerto", partida);   
+                    partida.sumarPunto();
+                    
+                } else{
+                    partida.perderVida();
+                    mostrarEfecto();
+                    mostrarMensaje("fallo", partida);
+                    partida.restarPunto();
+                }
+                actualizarPuntaje(partida);
+                partida.guardarLetra(letraHTML.innerText)
+                desactivarLetra(letraHTML);
+                actualizaImagen(partida.vidasRestantes());
+                evaluarResultado(partida,partida.jugador);
                     CrearBackup(partida);
                     //Mensajes de finalizacion de la partida 
                     if(partida.partidaTerminada()){ //Si la partida termina de forma natural
@@ -291,22 +327,22 @@ function main(){
                 } else {
                     console.log("La partida ya termino")
                 }        
+            })
         })
-    })
 
-    //Evento de reseteo
-    const btnReset = document.querySelector(".Header__Reset");
-    btnReset.addEventListener('click', () => {
-        partida = reset(partida);
-    })
-
-    //Evento de cambio de dificultad
-    const Dificultades = [...document.querySelectorAll(".Header__Dificultad__Seleccion li")];
-    const DificultadElegida = document.querySelector(".Header__Dificultad__Seleccionado")
-    Dificultades.forEach(dificultad => {
-        dificultad.addEventListener('click', ()=>{
-            if(DificultadElegida.innerHTML != dificultad.innerHTML){
-                Swal.fire({
+        //Evento de reseteo
+        const btnReset = document.querySelector(".Header__Reset");
+        btnReset.addEventListener('click', () => {
+            partida = reset(partida);
+        })
+        
+        //Evento de cambio de dificultad
+        const Dificultades = [...document.querySelectorAll(".Header__Dificultad__Seleccion li")];
+        const DificultadElegida = document.querySelector(".Header__Dificultad__Seleccionado")
+        Dificultades.forEach(dificultad => {
+            dificultad.addEventListener('click', ()=>{
+                if(DificultadElegida.innerHTML != dificultad.innerHTML){
+                    Swal.fire({
                     title: "Desea cambiar la dificultad a " + dificultad.innerHTML + "?",
                     text: "Esta accion borrara la partida en curso",
                     icon: 'info',
@@ -320,50 +356,22 @@ function main(){
             }
         })
     })
-}
-
-function reset(partida){
-    let letrasHTML = [...document.getElementsByClassName("Input__Letras__Letra")];
-    partida = Constructor(asignarPalabra());
-    reactivarLetras(letrasHTML);
-    actualizarPuntaje(partida);
-    sessionStorage.clear();
-    return partida;
-}
-
-function consultarAPI(dificultad = "Aleatorio"){
-    return new Promise((resolve, reject) =>{
-        fetch('./JSON/API.json')
-        .then(response => response.json())
-        .then(response => {
-            const PalabrasOrdenadas = new Palabras(response);
-            //Llenamos el localStorage segun la dificultad deseada
-            console.log("Simulando peticion a una API")
-            setTimeout(() =>{
-                if(dificultad === "Facil"){
-                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Facil)); //SE ELIGE LA DIFICULTAD
-                } else if(dificultad === "Normal"){
-                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Normal)); //SE ELIGE LA DIFICULTAD
-                }else if(dificultad === "Dificil"){
-                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Dificil)); //SE ELIGE LA DIFICULTAD
-                } else{
-                    localStorage.setItem("palabras", JSON.stringify(PalabrasOrdenadas.Aleatorio));
-                }
-                resolve("Datos cargados con extio")
-            }, 500) //Los segundos estan para "simular" la tardanza en la respuesta de la API 
-        })
-    })
-}
-
-async function formatearDificultad(dificultad, partida){
-    promesaResuelta = await consultarAPI(dificultad);
-    console.log(promesaResuelta)
-    partida = reset(partida);
+    
     return partida
 }
 
+function main(){ 
+    //Consultamos la disponibilidad de palabras para el juego
+    consultarAPI()
+    .then(resp => console.log(resp))
+    .catch(error => console.log("Ocurrio un error en la peticion de las palabras: " + error))
+
+    //Generamos la partida (asignando una palabra aleatoria)
+    let partida = Constructor(asignarPalabra(), true);
+
+    //Generamos los eventos para comenzar el juego
+    partida = generarEventos(partida)
+    
+}
+
 main();
-
-
-//RETORNAR UNA PROMESA QUE CUANDO SE CUMPLA: SURGA EL RESETEO...
-//La funcion ConsultarApi retorna una promesa

@@ -1,7 +1,22 @@
 [
     {
+        "palabra" : "carton",
+        "longitud" : 6,
+        "dificultad" : 1  
+    },
+    {
         "palabra" : "oso",
+        "longitud" : 3,
+        "dificultad" : 1   
+    },
+    {
+        "palabra" : "polo",
         "longitud" : 4,
+        "dificultad" : 1   
+    },
+    {
+        "palabra" : "correr",
+        "longitud" : 3,
         "dificultad" : 1   
     },
     {
