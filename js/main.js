@@ -1,3 +1,4 @@
+
 class Palabras{
     constructor(arrayPalabras){
         this.Aleatorio = arrayPalabras.map(ObjPlabra => ObjPlabra.palabra)
