@@ -120,10 +120,10 @@ function modificarPalabraHTML(partida){
 
 function mostrarMensaje(mensaje, partida){
     const Mensaje = {
-        bienvenido : "Bienvenido! inicialmente tienes " + partida.vidasRestantes() + " VIDAS\n" + "------------------------------------------------------------\n" + "Haga click sobre las letras para comenzar el turno" + "\n------------------------------------------------------------",
+        bienvenido : "Bienvenido! tienes " + partida.vidasRestantes() + " VIDAS\n" + "------------------------------------------------------------\n" + "Haga click sobre las letras para comenzar el turno" + "\n------------------------------------------------------------",
         seguirPartida : "Bienvenido! tienes " + partida.vidasRestantes() + " VIDAS\n" + "------------------------------------------------------------\n" + "Haga click sobre las letras para seguir con el turno" + "\n------------------------------------------------------------",
-        acerto : "ACERTASTE\n------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' estaba en la palabra" + "\n------------------------------------------------------------",
-        fallo : "FALLASTE... " + partida.vidasRestantes() + " VIDAS RESTANTES\n" + "------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' no estaba en la palabra" + "\n------------------------------------------------------------",
+        acerto : "ACERTASTE\n------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' esta en la palabra" + "\n------------------------------------------------------------",
+        fallo : "FALLASTE... " + partida.vidasRestantes() + " VIDAS RESTANTES\n" + "------------------------------------------------------------\n" + "La letra '" + partida.ultimoIngreso.toUpperCase() + "' no esta en la palabra" + "\n------------------------------------------------------------",
         gano : "GANASTE\n------------------------------------------------------------\n" + "La palabra era: '" + partida.palabraAdivinar + "'.\n------------------------------------------------------------",
         perdio : "PERDISTE\n------------------------------------------------------------\n" + "La palabra era: '" + partida.palabraAdivinar + "'. Suerte para la proxima!\n------------------------------------------------------------",
         partidaTerminada : "Bienvenido! Tu partida ya termino \n" + "------------------------------------------------------------\n" + "Haga click sobre RESET para empezar una nueva partida" + "\n------------------------------------------------------------"
@@ -159,7 +159,7 @@ function evaluarResultado(partida, jugador){
 }
 
 function asignarPalabra(){ 
-    const listaDePalabras = JSON.parse(localStorage.getItem("palabras"));
+    const listaDePalabras = JSON.parse(localStorage.getItem("palabras")); //Vacio al iniciar
     console.log(listaDePalabras)
     const indiceElegido = Math.floor(Math.random() * listaDePalabras.length);
     return listaDePalabras[indiceElegido]
@@ -298,7 +298,7 @@ function generarEventos(partida){
                 desactivarLetra(letraHTML);
                 actualizaImagen(partida.vidasRestantes());
                 evaluarResultado(partida,partida.jugador);
-                    CrearBackup(partida);
+                CrearBackup(partida);
                     //Mensajes de finalizacion de la partida 
                     if(partida.partidaTerminada()){ //Si la partida termina de forma natural
                         if(partida.vidasRestantes() != 0){
@@ -364,14 +364,15 @@ function generarEventos(partida){
 function main(){ 
     //Consultamos la disponibilidad de palabras para el juego
     consultarAPI()
-    .then(resp => console.log(resp))
+    .then(resp => {
+        console.log(resp)
+        //Generamos la partida (asignando una palabra aleatoria)
+        let partida = Constructor(asignarPalabra(), true);
+
+        //Generamos los eventos para comenzar el juego
+        partida = generarEventos(partida)
+    })
     .catch(error => console.log("Ocurrio un error en la peticion de las palabras: " + error))
-
-    //Generamos la partida (asignando una palabra aleatoria)
-    let partida = Constructor(asignarPalabra(), true);
-
-    //Generamos los eventos para comenzar el juego
-    partida = generarEventos(partida)
     
 }
 
